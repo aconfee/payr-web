@@ -1,0 +1,1 @@
+export const API_ROOT = 'payr.us-west-2.elasticbeanstalk.com';

@@ -1,0 +1,11 @@
+# app settings for specific environments. Branch specific settings are deployed and shouldn't be changed.
+./src/appsettings.js
+
+# dependencies
+/node_modules
+
+# production
+/build
+
+# misc
+.DS_Store
