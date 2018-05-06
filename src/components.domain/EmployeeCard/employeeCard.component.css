@@ -1,0 +1,28 @@
+.employee-card {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+
+    margin: 4px;
+}
+
+.employee-card
+.title {
+    width: 214px;
+}
+
+.employee-card
+.inline {
+    display: inline-block;
+}
+
+.employee-card
+.green {
+    color: #69F0AE;
+}
+
+.employee-card
+.blue {
+    color: #00E5FF;
+}

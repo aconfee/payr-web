@@ -1,0 +1,17 @@
+.list-with-action {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.list-with-action
+.list-items {
+    margin-bottom: 6px;
+}
+
+.list-with-action
+.title {
+    font-weight: bold;
+    font-size: 20px;
+}
