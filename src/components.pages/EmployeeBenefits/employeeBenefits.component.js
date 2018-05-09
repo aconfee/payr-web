@@ -24,16 +24,29 @@ class EmployeeBenefits extends Component {
     renderTotalEmployerPayout = () => {
         var totalPayout = 0;
         this.props.employees.forEach((employee) => {
-            totalPayout += employee.totalAnnualCost;
+            totalPayout += employee.benefitsTotalAnnualCost;
         });
 
         return formatCurrencyUSD(totalPayout);
     };
 
+    getBenefitDiscounts = (employee) => {
+        return isEmpty(employee.benefitsDiscounts) 
+            ? '-' 
+            : employee.benefitsDiscounts
+                .map(x => x.name)
+                .join(', ');
+    };
+
+    getPaycheckDeduction = (employee) => {
+        return employee.benefitsTotalAnnualCost / employee.payrollInfo.paychecksPerYear;
+    };
+
     renderEmployees = () => {
         return this.props.employees.map((employee) => {
 
-            const { id, firstname, lastname, salary, totalAnnualCost, paycheckDeduction } = employee;
+            const { id, firstname, lastname, benefitsTotalAnnualCost, payrollInfo } = employee;
+
             var error = false;
             if(isNull(id) || isUndefined(id)) {
                 console.error(`ID not found on ${employee}. Not rendering.`);
@@ -50,18 +63,23 @@ class EmployeeBenefits extends Component {
                 error = true;
             }
 
-            if(isNull(salary) || isUndefined(salary)) {
+            if(isNull(payrollInfo) || isUndefined(payrollInfo)) {
+                console.error(`Payroll information not found on ${employee}. Not rendering.`);
+                error = true;
+            }
+
+            if(isNull (payrollInfo.salary) || isUndefined(payrollInfo.salary)) {
                 console.error(`Salary not found on ${employee}. Not rendering.`);
                 error = true;
             }
 
-            if(isNull(totalAnnualCost) || isUndefined(totalAnnualCost)) {
-                console.error(`Total annual cost not found on ${employee}. Not rendering.`);
+            if(isNull (payrollInfo.paychecksPerYear) || isUndefined(payrollInfo.paychecksPerYear)) {
+                console.error(`Paychecks per year not found on ${employee}. Not rendering.`);
                 error = true;
             }
 
-            if(isNull(paycheckDeduction) || isUndefined(paycheckDeduction)) {
-                console.error(`Paycheck deduction not found on ${employee}. Not rendering.`);
+            if(isNull(benefitsTotalAnnualCost) || isUndefined(benefitsTotalAnnualCost)) {
+                console.error(`Benefits total annual cost not found on ${employee}. Not rendering.`);
                 error = true;
             }
 
@@ -74,10 +92,10 @@ class EmployeeBenefits extends Component {
                     key={ employee.id }
                     id={ employee.id }
                     fullName={ employee.firstname + ' ' + employee.lastname } 
-                    salary={ employee.salary } 
-                    annualDeduction={ employee.totalAnnualCost } 
-                    paycheckDeduction={ employee.paycheckDeduction } 
-                    discounts={ isEmpty(employee.discounts) ? '-' : employee.discounts.join(', ') } 
+                    salary={ employee.payrollInfo.salary } 
+                    annualDeduction={ employee.benefitsTotalAnnualCost } 
+                    paycheckDeduction={ this.getPaycheckDeduction(employee) }
+                    discounts={ this.getBenefitDiscounts(employee) } 
                     dependents={ employee.dependents }
                 />
             );

@@ -4,22 +4,26 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const query = gql`
-{ 
-	employees {
-    id
-    firstname
-    lastname
-    salary
-    totalAnnualCost
-    paycheckDeduction
-    discounts
-    dependents{
+{
+    employees{
       id
       firstname
       lastname
+      benefitsTotalAnnualCost
+      payrollInfo{
+        salary
+        paychecksPerYear
+      }
+      benefitsDiscounts {
+        name
+      }
+      dependents{
+        id
+        firstname
+        lastname
+      }
     }
-  }
-}`;
+  }`;
 
 class EmployeeBenefitsQuery extends Component {
     render(){
