@@ -6,6 +6,7 @@ import { Card, RaisedButton } from 'material-ui';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { formatCurrencyUSD } from '../../utilities/format.util';
 import EmployeeCard from '../../components.domain/EmployeeCard/employeeCard.component';
+import AddEmployeeMutation from './addEmployee.mutation';
 import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
@@ -15,10 +16,20 @@ class EmployeeBenefits extends Component {
         employees: []
     };
 
+    constructor(props) {
+        super(props);
+
+        this.state = { addEmployeePopupOpen: false };
+    };
+
     greenStyle = { color: '#69F0AE' };
 
-    handleAddEmployee = () => {
-        alert('Adding employee!');
+    openAddEmployeePopup = () => {
+        this.setState({addEmployeePopupOpen: true});
+    };
+
+    closeAddEmployeePopup = () => {
+        this.setState({addEmployeePopupOpen: false});
     };
 
     renderTotalEmployerPayout = () => {
@@ -33,9 +44,7 @@ class EmployeeBenefits extends Component {
     getBenefitDiscounts = (employee) => {
         return isEmpty(employee.benefitsDiscounts) 
             ? '-' 
-            : employee.benefitsDiscounts
-                .map(x => x.name)
-                .join(', ');
+            : employee.benefitsDiscounts.join(', ');
     };
 
     getPaycheckDeduction = (employee) => {
@@ -102,6 +111,14 @@ class EmployeeBenefits extends Component {
         });
     };
 
+    renderAddEmployeeInput = () => {
+        if(this.state.addEmployeePopupOpen){
+            return (<div className='add-employee-input'><AddEmployeeMutation onClick={ this.closeAddEmployeePopup } /></div>);
+        }
+
+        return null;
+    };
+
     render() {
         return(
             <div className='employee-benefits'>
@@ -113,7 +130,8 @@ class EmployeeBenefits extends Component {
                         <div style={{ height: '5px' }}></div>
                         <div className='total-payout green' >{ this.renderTotalEmployerPayout() }</div>
                         <div style={{ height: '30px' }}></div>
-                        <RaisedButton label="Add Employee" primary={true} onClick={ this.handleAddEmployee } />
+                        <RaisedButton label="Add Employee" primary={true} onClick={ this.openAddEmployeePopup } />
+                        { this.renderAddEmployeeInput() }
                         <div style={{ height: '15px' }}></div>
                         { this.renderEmployees() }
                     </Card>

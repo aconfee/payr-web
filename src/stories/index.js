@@ -13,6 +13,7 @@ import ListWithAction from '../components/ListWithAction/listWithAction.componen
 import ListItem from '../components/ListItem/listItem.component';
 import EmployeeCard from '../components.domain/EmployeeCard/employeeCard.component';
 import EmployeeBenefits from '../components.pages/EmployeeBenefits/employeeBenefits.component';
+import InputCard from '../components/InputCard/inputCard.component';
 
 const clickAlert = () => {
   alert('Click!');
@@ -32,6 +33,9 @@ storiesOf('Button', module)
 
 storiesOf('App', module)
   .add('view', () => <App />);
+
+storiesOf('Input', module)
+  .add('Input Card', () => <InputCard />);
 
 storiesOf('Dummy', module)
   .add('dummy', () => <Dummy />);

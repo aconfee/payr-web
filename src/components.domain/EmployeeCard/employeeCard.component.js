@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './employeeCard.component.css';
 import '../../enzymeSetup.js';
-import { Card, CardHeader, CardText, RaisedButton } from 'material-ui';
+import { Card, CardHeader, CardText } from 'material-ui';
 import { MuiThemeProvider } from 'material-ui/styles';
 import ListItem from '../../components/ListItem/listItem.component';
 import ListWithAction from '../../components/ListWithAction/listWithAction.component';
 import ListItemWithAction from '../../components/ListItemWithAction/listItemWithAction.component';
 import { formatCurrencyUSD } from '../../utilities/format.util';
+import RemoveEmployeeMutation from './removeEmployee.mutation';
 
 class EmployeeCard extends Component {
     static defaultProps = {
@@ -16,14 +17,15 @@ class EmployeeCard extends Component {
         annualDeduction: -1,
         salary: -1,
         discounts: 'default',
-        dependents: []
+        dependents: [],
+        onEmployeeDeleted: () => alert('Employee deleted')
     };
 
     greenStyle = { color: '#69F0AE' };
     blueStyle = { color: '#00E5FF' };
 
     handleRemoveEmployee = () => {
-        alert(`Remove employee ${this.props.id}`);
+        this.props.onEmployeeDeleted(this.props.id);
     };
 
     handleAddDependent = () => {
@@ -101,13 +103,7 @@ class EmployeeCard extends Component {
                             </ ListWithAction>
 
                             <div style={{ height: '15px'}}></div>
-                            <RaisedButton 
-                                label="Remove Employee" 
-                                primary={false} 
-                                backgroundColor={'#FF5252'} 
-                                labelStyle={{ color: 'white' }}
-                                onClick={ this.handleRemoveEmployee }
-                            />
+                            <RemoveEmployeeMutation id={ this.props.id } onClick={ this.handleRemoveEmployee } />
                         </CardText>
                     </ Card>
                 </ MuiThemeProvider>
@@ -122,7 +118,8 @@ EmployeeCard.propTypes = {
     annualDeduction: PropTypes.number.isRequired,
     salary: PropTypes.number.isRequired,
     discounts: PropTypes.string,
-    dependents: PropTypes.arrayOf(PropTypes.object)
+    dependents: PropTypes.arrayOf(PropTypes.object),
+    onEmployeeDeleted: PropTypes.func
 };
 
 export default EmployeeCard;

@@ -1,0 +1,11 @@
+.input-card {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+
+    display: inline-block;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}

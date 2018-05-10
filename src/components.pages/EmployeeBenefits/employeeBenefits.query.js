@@ -3,7 +3,7 @@ import EmployeeBenefits from './employeeBenefits.component';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const query = gql`
+export const EMPLOYEES_BENEFITS_QUERY = gql`
 {
     employees{
       id
@@ -14,9 +14,7 @@ const query = gql`
         salary
         paychecksPerYear
       }
-      benefitsDiscounts {
-        name
-      }
+      benefitsDiscounts
       dependents{
         id
         firstname
@@ -26,14 +24,21 @@ const query = gql`
   }`;
 
 class EmployeeBenefitsQuery extends Component {
+
+    handleRefresh = () => {
+        debugger;
+        this.forceUpdate();
+    };
+
     render(){
+        debugger;
         return(
-            <Query query={query}>
+            <Query query={EMPLOYEES_BENEFITS_QUERY}>
                 {({ loading, error, data }) => {
                     if(loading) return (<p>Loading...</p>)
                     if(error) return (<p>Error :( </p>)
                         
-                    return (<EmployeeBenefits employees={data.employees} />);
+                    return (<EmployeeBenefits employees={data.employees} onRefresh={ this.handleRefresh } />);
                 }}
             </Query>
         )}
