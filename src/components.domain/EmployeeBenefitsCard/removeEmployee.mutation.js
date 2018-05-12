@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo';
 import { RaisedButton } from 'material-ui';
 import { MuiThemeProvider } from 'material-ui/styles';
 import gql from 'graphql-tag';
-import { EMPLOYEES_BENEFITS_QUERY } from '../../components.pages/EmployeeBenefits/employeeBenefits.query';
+import { EMPLOYEES_WITH_TOTAL_QUERY } from '../EmployeeBenefitsList/employeesWithTotal.query';
 
 const mutation = gql`
 mutation removeEmployee($id: Int!){
@@ -25,7 +25,7 @@ class RemoveEmployeeMutation extends Component {
                             onClick={ () => { 
                                 removeEmployee({
                                     refetchQueries: [{
-                                        query: EMPLOYEES_BENEFITS_QUERY
+                                        query: EMPLOYEES_WITH_TOTAL_QUERY
                                     }],
                                     variables: { id: this.props.id }
                                 });
@@ -38,8 +38,7 @@ class RemoveEmployeeMutation extends Component {
 };
 
 RemoveEmployeeMutation.propTypes = {
-    id: PropTypes.number,
-    onClick: PropTypes.func
+    id: PropTypes.number
 };
 
 export default RemoveEmployeeMutation;

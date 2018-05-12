@@ -7,7 +7,7 @@ import './enzymeSetup.js';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 import { AppBar } from 'material-ui';
-import EmployeeBenefitsQuery from './components.pages/EmployeeBenefits/employeeBenefits.query';
+import EmployeesWithTotalQuery from './components.domain/EmployeeBenefitsList/employeesWithTotal.query';
 
 const client = new ApolloClient({
   uri: API_ROOT + '/graphql'
@@ -23,7 +23,7 @@ class App extends Component {
           <div className='app'>
             <AppBar title='Payr' style={{ marginBottom: '50px' }} />
             <div className='page-content' >
-              <EmployeeBenefitsQuery />
+              <EmployeesWithTotalQuery />
             </div>
           </div>
         </ MuiThemeProvider>

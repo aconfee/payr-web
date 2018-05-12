@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputCard from '../../components/InputCard/inputCard.component';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import { EMPLOYEES_BENEFITS_QUERY } from './employeeBenefits.query';
+import { EMPLOYEES_WITH_TOTAL_QUERY } from './employeesWithTotal.query';
 
 const mutation = gql`
 mutation addEmployee($firstname: String!, $lastname: String!){
@@ -20,7 +20,7 @@ class AddEmployeeMutation extends Component {
                     <InputCard onClick={ (values) => { 
                         addEmployee({
                             refetchQueries: [{
-                                query: EMPLOYEES_BENEFITS_QUERY
+                                query: EMPLOYEES_WITH_TOTAL_QUERY
                             }],
                             variables: {
                                 firstname: values.first, 

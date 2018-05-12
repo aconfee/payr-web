@@ -1,0 +1,11 @@
+.employee-benefits-info{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.employee-benefits-info
+.inline {
+    display: inline-block;
+}

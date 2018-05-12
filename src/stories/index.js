@@ -11,7 +11,7 @@ import Dummy from '../components/Dummy/dummy.component';
 import ListItemWithAction from '../components/ListItemWithAction/listItemWithAction.component';
 import ListWithAction from '../components/ListWithAction/listWithAction.component';
 import ListItem from '../components/ListItem/listItem.component';
-import EmployeeCard from '../components.domain/EmployeeCard/employeeCard.component';
+import EmployeeBenefitsCard from '../components.domain/EmployeeBenefitsCard/employeeBenefitsCard.component';
 import EmployeeBenefits from '../components.pages/EmployeeBenefits/employeeBenefits.component';
 import InputCard from '../components/InputCard/inputCard.component';
 
@@ -63,7 +63,7 @@ storiesOf('Lists', module)
 storiesOf('Employee Card', module)
   .add('Default', () => {
     return (
-      <EmployeeCard 
+      <EmployeeBenefitsCard 
         id='Adam Estela'
         fullName='Adam Estela' 
         salary={ 48000 } 
