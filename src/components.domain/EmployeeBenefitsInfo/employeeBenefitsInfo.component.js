@@ -8,6 +8,10 @@ import ListWithAction from '../../components/ListWithAction/listWithAction.compo
 import DependentListItemWithRemoveMutation from './dependentListItemWithRemove.mutation';
 import { formatCurrencyUSD } from '../../utilities/format.util';
 import isEmpty from 'lodash/isEmpty';
+
+// TEMP
+import AddDependentMutation from './addDependent.mutation';
+
 const greenStyle = { color: '#69F0AE' };
 const blueStyle = { color: '#00E5FF' };
 
@@ -21,12 +25,24 @@ class EmployeeBenefitsInfo extends Component {
         dependents: [],
     };
 
-    handleAddDependent = () => {
-        alert('Add dependent!');
+    constructor(props) {
+        super(props);
+
+        this.state = { showAddDependentForm: false };
     };
 
-    handleRemoveDependent = (id) => {
-        alert(`Remove dependent ${id}`);
+    /**
+     * Reveal the form to add a dependent.
+     */
+    showAddDependentForm = () => {
+        this.setState({showAddDependentForm: true});
+    };
+
+    /**
+     * Hide the form used to add a dependent.
+     */
+    hideAddDependentForm = () => {
+        this.setState({showAddDependentForm: false});
     };
 
     /**
@@ -67,6 +83,19 @@ class EmployeeBenefitsInfo extends Component {
         });
     };
 
+    /**
+     * Render the form used to add a dependent.
+     * 
+     * @returns the rendered jsx form to add a dependent.
+     */
+    renderAddDependentForm = () => {
+        if(this.state.showAddDependentForm){
+            return (<div className='add-dependent-input'><AddDependentMutation  employeeId={ this.props.employeeId } onClick={ this.hideAddDependentForm } /></div>);
+        }
+
+        return null;
+    };
+
     render() {
         const { salary, benefitsTotalAnnualCost } = this.props;
 
@@ -89,9 +118,11 @@ class EmployeeBenefitsInfo extends Component {
                         </ div>
 
                         <div style={{ height: '15px'}}></div>
-                        <ListWithAction titleText='Dependents' buttonLabelText='Add Dependent' onClick={ this.handleAddDependent }>
+                        <ListWithAction titleText='Dependents' buttonLabelText='Add Dependent' onClick={ this.showAddDependentForm }>
                             { this.renderDependents() }
                         </ListWithAction>
+                        <div style={{ height: '15px'}}></div>
+                        { this.renderAddDependentForm() }
                     </div>
                 </ MuiThemeProvider>
             </div>

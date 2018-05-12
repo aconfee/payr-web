@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo';
 import { MuiThemeProvider } from 'material-ui/styles';
 import ListItemWithAction from '../../components/ListItemWithAction/listItemWithAction.component';
 import gql from 'graphql-tag';
-import { EMPLOYEES_BENEFITS_INFO_QUERY } from '../EmployeeBenefitsInfo/employeeBenefitsInfo.query';
+import { EMPLOYEES_BENEFITS_INFO_QUERY } from './employeeBenefitsInfo.query';
 import { EMPLOYEES_WITH_TOTAL_QUERY } from '../EmployeeBenefitsList/employeesWithTotal.query';
 
 const mutation = gql`

@@ -9,3 +9,8 @@
 .inline {
     display: inline-block;
 }
+
+.employee-benefits-info
+.add-dependent-input {
+    text-align: center;
+}

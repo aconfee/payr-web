@@ -7,6 +7,7 @@ import { Card, CardText, TextField, RaisedButton } from 'material-ui';
 
 class InputCard extends Component {
     static defaultProps = {
+        buttonLabel: 'default',
         onClick: () => alert('default')
     };
 
@@ -25,6 +26,8 @@ class InputCard extends Component {
     };
     
     render() {
+        const { buttonLabel } = this.props;
+
         return(
             <div className='input-card'>
                 <MuiThemeProvider>
@@ -34,7 +37,7 @@ class InputCard extends Component {
                             <div><TextField hintText='Last name' name='last' onChange={ this.handleInputChange } /></div>
                             <div style={{ height: '20px' }}></div>
                             <RaisedButton 
-                                label="Add Employee" 
+                                label={ buttonLabel } 
                                 primary={true} 
                                 onClick={ this.handleClick }
                             />
@@ -47,6 +50,7 @@ class InputCard extends Component {
 };
 
 InputCard.propTypes = {
+    buttonLabel: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
 };
 

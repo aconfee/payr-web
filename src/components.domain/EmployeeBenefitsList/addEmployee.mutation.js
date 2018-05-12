@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputCard from '../../components/InputCard/inputCard.component';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -17,7 +18,7 @@ class AddEmployeeMutation extends Component {
         return(
             <Mutation mutation={mutation}>
                 {( addEmployee, { data }) => (                        
-                    <InputCard onClick={ (values) => { 
+                    <InputCard  buttonLabel='Add Employee' onClick={ (values) => { 
                         addEmployee({
                             refetchQueries: [{
                                 query: EMPLOYEES_WITH_TOTAL_QUERY
@@ -36,5 +37,9 @@ class AddEmployeeMutation extends Component {
             </Mutation>
         )}
 };
+
+AddEmployeeMutation.protoTypes = {
+    onClick: PropTypes.func
+}
 
 export default AddEmployeeMutation;
