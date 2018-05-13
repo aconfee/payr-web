@@ -16,6 +16,8 @@ query employee($id: Int!) {
             id
             firstname
             lastname
+            addonCost
+            benefitsDiscounts
         }
     }
 }`;

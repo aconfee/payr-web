@@ -1,3 +1,7 @@
+/**
+ * TODO: Make this more modular... can accept fields to generate.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './inputCard.component.css';

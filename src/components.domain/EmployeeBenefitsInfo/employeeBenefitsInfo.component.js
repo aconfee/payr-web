@@ -8,6 +8,7 @@ import ListWithAction from '../../components/ListWithAction/listWithAction.compo
 import DependentListItemWithRemoveMutation from './dependentListItemWithRemove.mutation';
 import { formatCurrencyUSD } from '../../utilities/format.util';
 import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
 
 // TEMP
 import AddDependentMutation from './addDependent.mutation';
@@ -72,12 +73,18 @@ class EmployeeBenefitsInfo extends Component {
      */
     renderDependents = () => {
         return this.props.dependents.map((dependent) => {
+
+            const error = isNil(dependent.id) || isNil(dependent.firstname) || isNil(dependent.lastname) || isNil(dependent.addonCost);
+            if(error) console.error(`Information missing for dependent ${dependent}. Will not render all information.`);
+
             return(
                 <DependentListItemWithRemoveMutation
                     id={dependent.id}
                     employeeId={this.props.employeeId}
                     firstname={dependent.firstname}
                     lastname={dependent.lastname}
+                    addonCost={dependent.addonCost}
+                    benefitsDiscounts={dependent.benefitsDiscounts}
                 />
             );
         });

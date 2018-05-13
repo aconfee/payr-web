@@ -60,10 +60,11 @@ class ListItemWithAction extends Component {
         return(
             <div className='list-item-with-action' onMouseEnter={ this.handleMouseEnter } onMouseLeave={ this.handleMouseLeave } >
                 <MuiThemeProvider>
-                    <div className='label' style={ this.props.labelStyle }>{ this.props.labelText }</div>
-                    <IconButton onClick={ this.handleClick }>
+                <IconButton onClick={ this.handleClick }>
                         { this.renderIcon() }
                     </ IconButton>
+                    <div className='label' style={ this.props.labelStyle }>{ this.props.labelText }</div>
+                    
                 </ MuiThemeProvider>
             </div>
         );

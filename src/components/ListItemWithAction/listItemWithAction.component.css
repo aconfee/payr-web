@@ -9,9 +9,6 @@
 
 .list-item-with-action
 .label {
-    width: 200px;
-    height: auto;
-
     display: inline-block;
 
     position: relative;

@@ -14,7 +14,7 @@ mutation removeDependent($id: Int!){
 
 class DependentListItemWithRemoveMutation extends Component {
     render(){
-        const { id, employeeId, firstname, lastname } = this.props;
+        const { id, employeeId, firstname, lastname, addonCost, benefitsDiscounts } = this.props;
 
         return(
             <Mutation mutation={mutation}>
@@ -23,7 +23,7 @@ class DependentListItemWithRemoveMutation extends Component {
                         <ListItemWithAction 
                             key={ id } 
                             id={ id } 
-                            labelText={ `${firstname} ${lastname}` } 
+                            labelText={ `${firstname} ${lastname} $${addonCost} ${benefitsDiscounts}` } 
                             icon='delete' 
                             iconShowOnHover={true}
                             onClick={ () => {
